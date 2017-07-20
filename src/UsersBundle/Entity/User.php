@@ -35,23 +35,23 @@ class User extends BaseUser
         // your own logic
     }
 
-    protected function getId(){
-        return $id;
+    public function getId(){
+        return $this->id;
     }
 
-    protected function getFirstName(){
-        return $firstName;
+    public function getFirstName(){
+        return $this->firstName;
     }
 
-    protected function getLastName(){
-        return $lastName;
+    public function getLastName(){
+        return $this->lastName;
     }
 
-    protected function setFirstName($firstName){
+    public function setFirstName($firstName){
         return $this->firstName = $firstName;
     }
 
-    protected function setLastName($lastName){
+    public function setLastName($lastName){
         return $this->lastName = $lastName; 
     }
 }
