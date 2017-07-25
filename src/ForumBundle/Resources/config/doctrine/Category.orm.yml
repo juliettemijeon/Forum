@@ -1,0 +1,19 @@
+ForumBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: ForumBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        categoryName:
+            type: string
+            length: 255
+            unique: true
+        description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -1,3 +1,7 @@
+forum:
+    resource: "@ForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
 base:
     resource: "@BaseBundle/Resources/config/routing.yml"
     prefix:   /

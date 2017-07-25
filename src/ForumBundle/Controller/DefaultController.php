@@ -1,6 +1,6 @@
 <?php
 
-namespace BaseBundle\Controller;
+namespace ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BaseBundle:Resources:layout.html.twig');
+        return $this->render('ForumBundle:Default:index.html.twig');
     }
 }

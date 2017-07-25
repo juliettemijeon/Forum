@@ -1,0 +1,18 @@
+ForumBundle\Entity\Topic:
+    type: entity
+    table: null
+    repositoryClass: ForumBundle\Repository\TopicRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        topicName:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
