@@ -8,19 +8,21 @@ namespace ForumBundle\Entity;
 class SubCategory
 {
     /**
+     * @var integer
+     *
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id",type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
+     * @ORM\Column(name="subCategoryName",type="string")
      */
     private $subCategoryName;
 
     /**
-     * @var string
+     * @ORM\Column(name="description",type="string")
      */
     private $description;
 

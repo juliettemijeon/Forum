@@ -8,17 +8,19 @@ namespace ForumBundle\Entity;
 class Topic
 {
     /**
-     * @var int
+     * @ORM\Id
+     * @ORM\Column(name="id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
+     * @ORM\Column(name="topicName",type="string")
      */
     private $topicName;
 
     /**
-     * @var string
+     * @ORM\Column(name="description",type="string")
      */
     private $description;
 

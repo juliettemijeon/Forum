@@ -1,0 +1,21 @@
+ForumBundle\Entity\Message:
+    type: entity
+    table: null
+    repositoryClass: ForumBundle\Repository\MessageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        body:
+            type: text
+        author:
+            type: object
+        date:
+            type: datetime
+        isAnswerTo:
+            type: object
+            nullable: true
+    lifecycleCallbacks: {  }
