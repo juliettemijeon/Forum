@@ -4,6 +4,7 @@ namespace ForumBundle\Entity;
 
 /**
  * Message
+ * @ORM\Entity
  */
 class Message
 {
@@ -33,10 +34,9 @@ class Message
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="ForumBundle/Entity/Message", mappedBy="id")
-     */
-    private $isAnswerTo;
-
+    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Topic",inversedBy="id")
+    */
+    private $topic;
 
     /**
      * Get id
@@ -118,30 +118,6 @@ class Message
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set isAnswerTo
-     *
-     * @param \stdClass $isAnswerTo
-     *
-     * @return Message
-     */
-    public function setIsAnswerTo($isAnswerTo)
-    {
-        $this->isAnswerTo = $isAnswerTo;
-
-        return $this;
-    }
-
-    /**
-     * Get isAnswerTo
-     *
-     * @return \stdClass
-     */
-    public function getIsAnswerTo()
-    {
-        return $this->isAnswerTo;
     }
 }
 

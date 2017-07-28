@@ -4,6 +4,7 @@ namespace ForumBundle\Entity;
 
 /**
  * Category
+ * @ORM\Entity
  */
 class Category
 {

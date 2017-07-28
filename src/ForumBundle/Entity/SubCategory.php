@@ -4,6 +4,7 @@ namespace ForumBundle\Entity;
 
 /**
  * SubCategory
+ * @ORM\Entity
  */
 class SubCategory
 {
@@ -25,6 +26,11 @@ class SubCategory
      * @ORM\Column(name="description",type="string")
      */
     private $description;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Category",inversedBy="id")
+    */
+    private $category;
 
 
     /**
