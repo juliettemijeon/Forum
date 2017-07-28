@@ -1,3 +1,67 @@
 forum_homepage:
     path:     /
     defaults: { _controller: ForumBundle:Default:index }
+
+view_categories:
+    path:     /categories
+    defaults: { _controller: ForumBundle:Category:viewCategories }
+
+create_category:
+    path:     /categories
+    defaults: { _controller: ForumBundle:Category:createCategory }
+
+update_category:
+    path:     /categories
+    defaults: { _controller: ForumBundle:Category:updateCategory }
+
+delete_categories:
+    path:     /categories
+    defaults: { _controller: ForumBundle:Category:deleteCategories }
+
+view_sub_category:
+    path:     /subcategory
+    defaults: { _controller: ForumBundle:SubCategory:viewSubCategory }
+
+create_sub_category:
+    path:     /subcategory
+    defaults: { _controller: ForumBundle:SubCategory:createSubCategory }
+
+update_sub_category:
+    path:     /subcategory
+    defaults: { _controller: ForumBundle:SubCategory:updateSubCategory }
+
+delete_sub_category:
+    path:     /subcategory
+    defaults: { _controller: ForumBundle:SubCategory:deleteSubCategory }
+
+view_topics:
+    path:     /topics
+    defaults: { _controller: ForumBundle:Topic:viewTopics }
+
+create_topic:
+    path:     /topics
+    defaults: { _controller: ForumBundle:Topic:createTopic }
+
+update_topic:
+    path:     /topic
+    defaults: { _controller: ForumBundle:Topic:updateTopic }
+
+delete_topic:
+    path:     /topic
+    defaults: { _controller: ForumBundle:Topic:deleteTopic }
+
+view_messages:
+    path:     /messages
+    defaults: { _controller: ForumBundle:MessageController:viewMessages }
+
+create_message:
+    path:     /messages
+    defaults: { _controller: ForumBundle:MessageController:createMessage }
+
+update_message:
+    path:     /messages
+    defaults: { _controller: ForumBundle:MessageController:updateMessage }
+
+delete_message:
+    path:     /messages
+    defaults: { _controller: ForumBundle:MessageController:deleteMessage }
