@@ -18,19 +18,26 @@ class CategoryController extends Controller
      */
     public function viewCategoriesAction()
     {
-        //Aller les chercher toutes les catégories
+        //Aller chercher toutes les catégories
         return $this->render('ForumBundle:Category:view_categories.html.twig', array(
             // ...
         ));
     }
 
     /**
-     * Undocumented function
+     * @Route("/categories",name="create_categories")
+     * 
+     * @method mixed $createCategoryAction
      *
      * @return void
      */
     public function createCategoryAction()
     {
+        //création du formulaire
+
+        //Si les données du formulaire sont valides on fait appel à la méthode du repository pour l'envoi en BDD
+
+        //return
         return $this->render('ForumBundle:Category:create_category.html.twig', array(
             // ...
         ));
