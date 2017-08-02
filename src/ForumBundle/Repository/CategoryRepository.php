@@ -2,6 +2,9 @@
 
 namespace ForumBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+
 /**
  * CategoryRepository
  *
@@ -10,4 +13,15 @@ namespace ForumBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Ajout d'une category
+     *
+     * @param Category $category
+     * @return category
+     */
+    public function addCategory(Category $category){
+        $this->_em->persist($category);
+        $this->_em->flush();
+        return $category;
+    }
 }

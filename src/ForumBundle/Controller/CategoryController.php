@@ -31,16 +31,20 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function createCategoryAction()
+    public function createCategoryAction(Request $request)
     {
         //création du formulaire
-
+        $form = $this->createForm(Category::class);
+        $form->submit($request->request->all());
         //Si les données du formulaire sont valides on fait appel à la méthode du repository pour l'envoi en BDD
-
+        if($form->isValid()){
+            // /!\ penser à déclarer le repository en tant que service
+            return $this->get('app.category_repository')->addCategory($form->getData());
+        }
         //return
-        return $this->render('ForumBundle:Category:create_category.html.twig', array(
+        /* return $this->render('ForumBundle:Category:create_category.html.twig', array(
             // ...
-        ));
+        )); */
     }
 
     /**

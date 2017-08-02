@@ -41,7 +41,7 @@ class CategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ForumBundle\Entity\Category',
+            'data_class' => Category::class,
             'empty_data' => function(FormInterface $form) {
                 $category = $this->em->getRepository('ForumBundle:Category')->createQueryBuilder('c')
                     ->where('c.categoryName LIKE (:categoryName)')
