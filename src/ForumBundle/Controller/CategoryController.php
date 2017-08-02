@@ -25,14 +25,15 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/categories",name="create_categories")
+     * @Route("/categories/create",name="create_categories")
      * 
      * @method mixed $createCategoryAction
      *
      * @return void
      */
     public function createCategoryAction(Request $request)
-    {
+    {   
+        echo("request" .$request);
         //création du formulaire
         $form = $this->createForm(Category::class);
         $form->submit($request->request->all());

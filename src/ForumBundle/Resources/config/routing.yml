@@ -7,7 +7,7 @@ view_categories:
     defaults: { _controller: ForumBundle:Category:viewCategories }
 
 create_category:
-    path:     /categories
+    path:     /categories/create
     defaults: { _controller: ForumBundle:Category:createCategory }
 
 update_category:
