@@ -4,16 +4,17 @@ namespace ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\BrowserKit\Request;
-use Symfony\Component\BrowserKit\Response;
-use Forum\ForumBundle\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use ForumBundle\Entity\Category;
+use ForumBundle\Form\CategoryType;
 
 class CategoryController extends Controller
 {
     /**
      * @Route("/categories",name="view_categories")
-     * @method mixed $viewCategoryAction()
-     *
+     * @Method("GET")
      * @return Response
      */
     public function viewCategoriesAction()
@@ -27,30 +28,36 @@ class CategoryController extends Controller
     /**
      * @Route("/categories/create",name="create_categories")
      * 
-     * @method mixed $createCategoryAction
+     * @Method("POST")
      *
      * @return void
      */
     public function createCategoryAction(Request $request)
     {   
-        echo("request" .$request);
+        $category = new Category();
         //création du formulaire
-        $form = $this->createForm(Category::class);
-        $form->submit($request->request->all());
-        //Si les données du formulaire sont valides on fait appel à la méthode du repository pour l'envoi en BDD
-        if($form->isValid()){
-            // /!\ penser à déclarer le repository en tant que service
-            return $this->get('app.category_repository')->addCategory($form->getData());
+        //$form = $this->createForm('ForumBundle\Entity\Category');
+        $form = $this->get('form.factory')->create(CategoryType::class,$category);
+        //tester avec handleRequest?
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            return $this->redirectToRoute('view_categories', array('id' => $category->getId()));
         }
-        //return
-        /* return $this->render('ForumBundle:Category:create_category.html.twig', array(
-            // ...
-        )); */
+        var_dump($category);
+
+        return $this->render('ForumBundle:Category:form.html.twig', array(
+            'form' => $form->createView(),
+        ));  
     }
 
     /**
      * Undocumented function
-     *
+     * @Method("PUT")
      * @return void
      */
     public function updateCategoryAction()
@@ -60,6 +67,11 @@ class CategoryController extends Controller
         ));
     }
 
+    /**
+     * Undocumented function
+     * @Method("DELETE")
+     * @return void
+     */
     public function deleteCategoriesAction()
     {
         return $this->render('ForumBundle:Category:delete_categories.html.twig', array(

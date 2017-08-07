@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    forum.category_repository:
+        class:     ForumBundle\Repository\CategoryRepository
+        factory:    ['@doctrine.orm.entity_manager', getRepository]
+        arguments:     [ForumBundle\Entity\Category]
