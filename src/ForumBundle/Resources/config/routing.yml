@@ -11,27 +11,27 @@ create_category:
     defaults: { _controller: ForumBundle:Category:createCategory }
 
 update_category:
-    path:     /categories
+    path:     /categories/{id}
     defaults: { _controller: ForumBundle:Category:updateCategory }
 
 delete_categories:
-    path:     /categories
+    path:     /categories/{id}
     defaults: { _controller: ForumBundle:Category:deleteCategories }
 
 view_sub_category:
-    path:     /subcategory
+    path:     /subcategories
     defaults: { _controller: ForumBundle:SubCategory:viewSubCategory }
 
 create_sub_category:
-    path:     /subcategory
+    path:     /subcategories
     defaults: { _controller: ForumBundle:SubCategory:createSubCategory }
 
 update_sub_category:
-    path:     /subcategory
+    path:     /subcategories/{id}
     defaults: { _controller: ForumBundle:SubCategory:updateSubCategory }
 
 delete_sub_category:
-    path:     /subcategory
+    path:     /subcategories/{id}
     defaults: { _controller: ForumBundle:SubCategory:deleteSubCategory }
 
 view_topics:
@@ -43,11 +43,11 @@ create_topic:
     defaults: { _controller: ForumBundle:Topic:createTopic }
 
 update_topic:
-    path:     /topic
+    path:     /topics/{id}
     defaults: { _controller: ForumBundle:Topic:updateTopic }
 
 delete_topic:
-    path:     /topic
+    path:     /topics/{id}
     defaults: { _controller: ForumBundle:Topic:deleteTopic }
 
 view_messages:
@@ -59,9 +59,9 @@ create_message:
     defaults: { _controller: ForumBundle:MessageController:createMessage }
 
 update_message:
-    path:     /messages
+    path:     /messages/{id}
     defaults: { _controller: ForumBundle:MessageController:updateMessage }
 
 delete_message:
-    path:     /messages
+    path:     /messages/{id}
     defaults: { _controller: ForumBundle:MessageController:deleteMessage }

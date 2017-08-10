@@ -7,14 +7,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\VarDumper\VarDumper;
 use ForumBundle\Entity\Category;
 use ForumBundle\Form\CategoryType;
+use ForumBundle\Form\CategoryEditType;
 
 class CategoryController extends Controller
 {
     /**
      * @Route("/categories",name="view_categories")
+     * 
      * @Method("GET")
+     *  
      * @return Response
      */
     public function viewCategoriesAction()
@@ -26,7 +30,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/categories/create",name="create_categories")
+     * @Route("/categories/create",name="create_category")
      * 
      * @Method("POST")
      *
@@ -36,9 +40,8 @@ class CategoryController extends Controller
     {   
         $category = new Category();
         //création du formulaire
-        //$form = $this->createForm('ForumBundle\Entity\Category');
         $form = $this->get('form.factory')->create(CategoryType::class,$category);
-        //tester avec handleRequest?
+        
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
@@ -48,7 +51,6 @@ class CategoryController extends Controller
 
             return $this->redirectToRoute('view_categories', array('id' => $category->getId()));
         }
-        var_dump($category);
 
         return $this->render('ForumBundle:Category:form.html.twig', array(
             'form' => $form->createView(),
@@ -56,15 +58,37 @@ class CategoryController extends Controller
     }
 
     /**
-     * Undocumented function
+     * @Route("/categories/{id}",name="update_category")
+     * 
      * @Method("PUT")
+     * 
      * @return void
      */
-    public function updateCategoryAction()
+    public function updateCategoryAction(Request $request,$id)
     {
-        return $this->render('ForumBundle:Category:update_category.html.twig', array(
-            // ...
-        ));
+        //VarDumper::dump($request);
+        //null : var_dump($request->get('attributes');
+        //var_dump($request);
+        //récupération de la catégorie à modifier
+        $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->find($id);
+        //var_dump($category);
+
+        $form = $this->get('form.factory')->create(CategoryEditType::class,$category);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            var_dump($form);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            return $this->redirectToRoute('view_categories', array('id' => $category->getId()));
+        }
+
+        return $this->render('ForumBundle:Category:form.html.twig', array(
+            'form' => $form->createView(),
+        )); 
     }
 
     /**
