@@ -24,8 +24,10 @@ class CategoryController extends Controller
     public function viewCategoriesAction()
     {
         //Aller chercher toutes les catégories
+        $categories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->findAll();
+
         return $this->render('ForumBundle:Category:view_categories.html.twig', array(
-            // ...
+             'categories'=>$categories, 
         ));
     }
 
@@ -43,10 +45,8 @@ class CategoryController extends Controller
         $form = $this->get('form.factory')->create(CategoryType::class,$category);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
-            $em->flush();
-
+            $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
+            
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
             return $this->redirectToRoute('view_categories', array('id' => $category->getId()));
@@ -66,20 +66,17 @@ class CategoryController extends Controller
      */
     public function updateCategoryAction(Request $request,$id)
     {
-        //VarDumper::dump($request);
-        //null : var_dump($request->get('attributes');
-        //var_dump($request);
         //récupération de la catégorie à modifier
         $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->find($id);
-        //var_dump($category);
 
         $form = $this->get('form.factory')->create(CategoryEditType::class,$category);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            var_dump($form);
+            //var_dump($form);
             $em = $this->getDoctrine()->getManager();
+            //$this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
             $em->persist($category);
-            $em->flush();
+            $em->flush(); 
 
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
@@ -92,12 +89,15 @@ class CategoryController extends Controller
     }
 
     /**
-     * Undocumented function
+     * @Route("/categories/{id}",name="delete_category")
+     * 
      * @Method("DELETE")
+     * 
      * @return void
      */
     public function deleteCategoriesAction()
     {
+        //à gérer dans le front du forum ou dans le backoffice?
         return $this->render('ForumBundle:Category:delete_categories.html.twig', array(
             // ...
         ));

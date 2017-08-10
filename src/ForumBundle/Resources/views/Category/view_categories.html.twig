@@ -1,7 +1,25 @@
-{% extends "::base.html.twig" %}
+{% extends "BaseBundle::layout/layout.html.twig" %}
 
-{% block title %}ForumBundle:Category:viewCategories{% endblock %}
+{% block content %}
+{% block title %}Catégories du forum{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Category:viewCategories page</h1>
+<h1>Bienvenue sur notre forum!</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Catégorie</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.categoryName }}</td>
+            <td>{{ category.description}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+{% endblock content %}
