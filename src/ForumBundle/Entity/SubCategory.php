@@ -2,6 +2,8 @@
 
 namespace ForumBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * SubCategory
  * @ORM\Entity

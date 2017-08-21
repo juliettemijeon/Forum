@@ -2,6 +2,10 @@
 
 namespace ForumBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use ForumBundle\Entity\SubCategory;
+
 /**
  * SubCategoryRepository
  *
@@ -10,4 +14,17 @@ namespace ForumBundle\Repository;
  */
 class SubCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Ajout d'une subcategory
+     *
+     * @param ForumBundle\Entity\SubCategory $subcategory
+     * @return subcategory
+     */
+    public function addSubCategory(SubCategory $subcategory){
+        $this->_em->persist($subcategory);
+        $this->_em->flush();
+        return $subcategory;
+    }
+
+    //mthd editCategry à créer
 }
