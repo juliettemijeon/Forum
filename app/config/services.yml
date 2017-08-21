@@ -37,3 +37,8 @@ services:
         class:     ForumBundle\Repository\CategoryRepository
         factory:    ['@doctrine.orm.entity_manager', getRepository]
         arguments:     [ForumBundle\Entity\Category]
+    
+    forum.subcategory_repository:
+        class:     ForumBundle\Repository\SubCategoryRepository
+        factory:    ['@doctrine.orm.entity_manager', getRepository]
+        arguments:     [ForumBundle\Entity\SubCategory]
