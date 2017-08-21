@@ -25,4 +25,6 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
         $this->_em->flush();
         return $category;
     }
+
+    //mthd editCategry à créer
 }
