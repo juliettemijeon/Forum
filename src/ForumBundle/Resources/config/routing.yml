@@ -19,19 +19,19 @@ delete_categories:
     defaults: { _controller: ForumBundle:Category:deleteCategories }
 
 view_sub_category:
-    path:     /subcategories
+    path:     /categories/{id}/subcategories
     defaults: { _controller: ForumBundle:SubCategory:viewSubCategory }
 
-create_sub_category:
-    path:     /subcategories
+create_subcategory:
+    path:     /categories/{id}/subcategories/create
     defaults: { _controller: ForumBundle:SubCategory:createSubCategory }
 
-update_sub_category:
-    path:     /subcategories/{id}
+update_subcategory:
+    path:     /categories/{id}/subcategories/{id}
     defaults: { _controller: ForumBundle:SubCategory:updateSubCategory }
 
-delete_sub_category:
-    path:     /subcategories/{id}
+delete_subcategory:
+    path:     /categories/{id}/subcategories/{id}
     defaults: { _controller: ForumBundle:SubCategory:deleteSubCategory }
 
 view_topics:
