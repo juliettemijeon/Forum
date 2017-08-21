@@ -1,21 +1,21 @@
 {% extends "BaseBundle::layout/layout.html.twig" %}
 
 {% block content %}
-{% block title %}Catégories du forum{% endblock %}
+{% block title %}Sous-catégories du forum{% endblock %}
 
 {% block body %}
 <h1>Bienvenue sur notre forum!</h1>
 <table>
     <thead>
         <tr>
-            <th>Catégorie</th>
+            <th>Sous-catégorie</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
-        {% for category in categories %}
+        {% for subcategory in subcategories %}
         <tr>
-            <td><a href="/categories/{id}/subcategories">{{ category.categoryName }}</a></td>
+            <td><a href="">{{ category.categoryName }}</a></td>
             <td>{{ category.description}}</td>
         </tr>
         {% endfor %}

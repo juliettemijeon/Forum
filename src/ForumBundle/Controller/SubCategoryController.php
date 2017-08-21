@@ -13,10 +13,20 @@ use ForumBundle\Form\SubCategoryEditType;
 
 class SubCategoryController extends Controller
 {
-    public function viewSubCategoryAction()
+    /**
+     * @Route("/categories/{id}/subcategories",name="view_subcategories")
+     * 
+     * @Method("GET")
+     *
+     * @return void
+     */
+    public function viewSubCategoryAction($id)
     {
-        return $this->render('ForumBundle:SubCategory:view_sub_category.html.twig', array(
-            // ...
+        //mettre à jour le routing
+        $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findAll();
+
+        return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
+            'subcategories'=>$subcategories,
         ));
     }
 
