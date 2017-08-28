@@ -92,5 +92,29 @@ class SubCategory
     {
         return $this->description;
     }
+
+    /**
+     * Set category
+     *
+     * @param int $category
+     *
+     * @return SubCategory
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return int
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }
 

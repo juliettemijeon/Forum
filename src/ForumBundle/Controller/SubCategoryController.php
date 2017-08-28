@@ -24,7 +24,7 @@ class SubCategoryController extends Controller
     public function viewSubCategoryAction($id)
     {
         //mettre à jour le routing
-        $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findAll();
+        $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$id));
 
         return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
             'subcategories'=>$subcategories,
@@ -38,18 +38,19 @@ class SubCategoryController extends Controller
      *
      * @return void
      */
-    public function createSubCategoryAction(Request $request)
+    public function createSubCategoryAction(Request $request,$id)
     {   VarDumper::dump($request);
         $subcategory = new SubCategory();
         //création du formulaire
         $form = $this->get('form.factory')->create(SubCategoryType::class,$subcategory);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $subcategory->setCategory($id);
             $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->addSubCategory($subcategory);
             
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-            return $this->redirectToRoute('view_subcategories', array('id' => $subcategory->getId()));
+            return $this->redirectToRoute('view_subcategories', array('id' => $subcategory->getCategory()));
         }
 
         return $this->render('ForumBundle:SubCategory:form.html.twig', array(
