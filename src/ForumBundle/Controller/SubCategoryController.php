@@ -23,7 +23,6 @@ class SubCategoryController extends Controller
      */
     public function viewSubCategoryAction($id)
     {
-        //mettre à jour le routing
         $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$id));
 
         return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
@@ -75,7 +74,7 @@ class SubCategoryController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             
             $em = $this->getDoctrine()->getManager();
-            //$this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
+            //à refact via une méthode de repository
             $em->persist($subcategory);
             $em->flush(); 
             
