@@ -72,7 +72,6 @@ class CategoryController extends Controller
         $form = $this->get('form.factory')->create(CategoryEditType::class,$category);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            //var_dump($form);
             $em = $this->getDoctrine()->getManager();
             //$this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
             $em->persist($category);
