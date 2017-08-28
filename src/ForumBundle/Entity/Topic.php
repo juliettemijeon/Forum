@@ -88,5 +88,29 @@ class Topic
     {
         return $this->description;
     }
+
+    /**
+     * Set subcategory
+     *
+     * @param string $subCategory
+     *
+     * @return Topic
+     */
+    public function setSubCategory($subCategory)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subcategory
+     *
+     * @return string
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
+    }
 }
 
