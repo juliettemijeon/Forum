@@ -39,12 +39,13 @@ class SubCategoryController extends Controller
      * @return void
      */
     public function createSubCategoryAction(Request $request,$id)
-    {   VarDumper::dump($request);
+    {   
         $subcategory = new SubCategory();
         //création du formulaire
         $form = $this->get('form.factory')->create(SubCategoryType::class,$subcategory);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            //on ajoute la category
             $subcategory->setCategory($id);
             $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->addSubCategory($subcategory);
             
@@ -58,10 +59,33 @@ class SubCategoryController extends Controller
         ));
     }
 
-    public function updateSubCategoryAction()
+    /**
+     * @Route("/categories/{id}/subcategories/{subCatId}",name="update_subcategory")
+     *
+     * @Method("PUT")
+     * 
+     * @return void
+     */
+    public function updateSubCategoryAction(Request $request,$subCatId)
     {
-        return $this->render('ForumBundle:SubCategory:update_sub_category.html.twig', array(
-            // ...
+        $subcategory = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->find($subCatId);
+        //création du formulaire
+        $form = $this->get('form.factory')->create(SubCategoryEditType::class,$subcategory);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            
+            $em = $this->getDoctrine()->getManager();
+            //$this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
+            $em->persist($subcategory);
+            $em->flush(); 
+            
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            return $this->redirectToRoute('view_subcategories', array('id' => $subcategory->getCategory()));
+        }
+
+        return $this->render('ForumBundle:SubCategory:form.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
