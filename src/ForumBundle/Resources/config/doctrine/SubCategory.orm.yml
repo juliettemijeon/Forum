@@ -16,4 +16,8 @@ ForumBundle\Entity\SubCategory:
         description:
             type: string
             length: 255
+        category:
+            type: integer
+            length: 255
+            inversedBy: category
     lifecycleCallbacks: {  }
