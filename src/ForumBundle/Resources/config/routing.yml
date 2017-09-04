@@ -35,19 +35,19 @@ delete_subcategory:
     defaults: { _controller: ForumBundle:SubCategory:deleteSubCategory }
 
 view_topics:
-    path:     /topics
+    path:     /categories/{id}/subcategories/{subCatId}/topics
     defaults: { _controller: ForumBundle:Topic:viewTopics }
 
 create_topic:
-    path:     /topics
+    path:     /categories/{id}/subcategories/{subCatId}/topics/create
     defaults: { _controller: ForumBundle:Topic:createTopic }
 
 update_topic:
-    path:     /topics/{id}
+    path:     /categories/{id}/subcategories/{subCatId}/topics/{topicId}
     defaults: { _controller: ForumBundle:Topic:updateTopic }
 
 delete_topic:
-    path:     /topics/{id}
+    path:     /categories/{id}/subcategories/{subCatId}/topics/{topicId}
     defaults: { _controller: ForumBundle:Topic:deleteTopic }
 
 view_messages:

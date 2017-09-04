@@ -1,7 +1,25 @@
-{% extends "::base.html.twig" %}
+{% extends "BaseBundle::layout/layout.html.twig" %}
 
-{% block title %}ForumBundle:Topic:viewTopics{% endblock %}
+{% block content %}
+{% block title %}Topics du forum{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Topic:viewTopics page</h1>
+<h1>Bienvenue sur notre forum!</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Topics</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for topic in topics %}
+        <tr>
+            <td><a href="">{{ topic.topicName }}</a></td>
+            <td>{{ topic.description}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+{% endblock content %}
