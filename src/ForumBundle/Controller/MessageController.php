@@ -4,7 +4,7 @@ namespace ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class MessageControllerController extends Controller
+class MessageController extends Controller
 {
     public function viewMessagesAction()
     {
