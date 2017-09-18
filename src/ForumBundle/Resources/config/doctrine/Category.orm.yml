@@ -16,4 +16,7 @@ ForumBundle\Entity\Category:
         description:
             type: string
             length: 255
+        slug:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

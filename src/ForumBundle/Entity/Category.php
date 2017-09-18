@@ -27,6 +27,11 @@ class Category
      */
     private $description;
 
+    /**
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
+
 
     /**
      * Get id
@@ -84,6 +89,27 @@ class Category
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * set slug
+     *
+     * @param string $slug
+     * @return void
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
 

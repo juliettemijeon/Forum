@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use EasySlugger\Slugger;
 //use Symfony\Component\VarDumper\VarDumper;
 use ForumBundle\Entity\Category;
 use ForumBundle\Form\CategoryType;
@@ -45,6 +46,8 @@ class CategoryController extends Controller
         $form = $this->get('form.factory')->create(CategoryType::class,$category);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            
+            $category->setSlug(Slugger::uniqueSlugify($form->get('categoryName')->getData()));
             $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->addCategory($category);
             
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
