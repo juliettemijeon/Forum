@@ -24,8 +24,6 @@ class TopicController extends Controller
      */
     public function viewTopicsAction($id,$subCatId)
     {
-        VarDumper::dump($id);
-        VarDumper::dump($subCatId);
         $topics = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Topic')->findBy(array('subCategory'=>$subCatId));
         return $this->render('ForumBundle:Topic:view_topics.html.twig', array(
             'topics'=>$topics
@@ -52,7 +50,6 @@ class TopicController extends Controller
             
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-            //trouver comment récupérer l'id de la categorie
             return $this->redirectToRoute('view_topics', array('id' => $id,'subCatId'=>$subCatId));
         }
 
@@ -61,10 +58,31 @@ class TopicController extends Controller
         ));
     }
 
-    public function updateTopicAction()
+    /**
+     * @Route("/categories/{id}/subcategories/{subCatId}/topics/{topicId}",name="update_topic")
+     * 
+     * @Method("PUT")
+     *
+     * @return void
+     */
+    public function updateTopicAction(Request $request,$id,$subCatId,$topicId)
     {
-        return $this->render('ForumBundle:Topic:update_topic.html.twig', array(
-            // ...
+        $topic = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Topic')->find($topicId);
+        
+        $form = $this->get('form.factory')->create(TopicEditType::class,$topic);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($topic);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            return $this->redirectToRoute('view_topics', array('id' => $id,'subCatId'=>$subCatId));
+        }
+
+        return $this->render('ForumBundle:Topic:form.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
