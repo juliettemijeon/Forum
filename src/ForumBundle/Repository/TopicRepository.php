@@ -2,6 +2,10 @@
 
 namespace ForumBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use ForumBundle\Entity\Topic;
+
 /**
  * TopicRepository
  *
@@ -10,4 +14,15 @@ namespace ForumBundle\Repository;
  */
 class TopicRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Ajout d'un topic
+     *
+     * @param ForumBundle\Entity\Topic $topic
+     * @return topic
+     */
+    public function addTopic(Topic $topic){
+        $this->_em->persist($topic);
+        $this->_em->flush();
+        return $topic;
+    }
 }

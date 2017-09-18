@@ -53,7 +53,7 @@ class TopicController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
             //trouver comment récupérer l'id de la categorie
-            return $this->redirectToRoute('view_topics', array('id' => $subcategory->getCategory(),'subCatId'=>$topic->getId()));
+            return $this->redirectToRoute('view_topics', array('id' => $id,'subCatId'=>$subCatId));
         }
 
         return $this->render('ForumBundle:Topic:form.html.twig', array(
