@@ -26,6 +26,11 @@ class Topic
      * @ORM\Column(name="description",type="string")
      */
     private $description;
+
+    /**
+     * @ORM\Colum,(name="slug", type="string")
+     */
+    private $slug;
     
     /**
     * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\SubCategory",inversedBy="id")
@@ -89,6 +94,27 @@ class Topic
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * set slug
+     *
+     * @param string $slug
+     * @return void
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
