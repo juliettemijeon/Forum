@@ -30,6 +30,11 @@ class SubCategory
     private $description;
 
     /**
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
+
+    /**
     * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Category",inversedBy="id")
     */
     private $category;
@@ -115,6 +120,27 @@ class SubCategory
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * set slug
+     *
+     * @param string $slug
+     * @return void
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
 

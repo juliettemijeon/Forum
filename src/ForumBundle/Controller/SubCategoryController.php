@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use EasySlugger\Slugger;
 use ForumBundle\Entity\SubCategory;
 use ForumBundle\Form\SubCategoryType;
 use ForumBundle\Form\SubCategoryEditType;
@@ -46,9 +47,13 @@ class SubCategoryController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             //on ajoute la category
             $subcategory->setCategory($id);
+            $subcategory->setSlug(Slugger::uniqueSlugify($form->get('subCategoryName')->getData()));
             $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->addSubCategory($subcategory);
             
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            /* var_dump($subcategory->getId());
+            die(); */
 
             return $this->redirectToRoute('view_subcategories', array('id' => $subcategory->getCategory()));
         }

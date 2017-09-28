@@ -16,6 +16,9 @@ ForumBundle\Entity\SubCategory:
         description:
             type: string
             length: 255
+        slug:
+            type: string
+            length: 255
         category:
             type: integer
             length: 255
