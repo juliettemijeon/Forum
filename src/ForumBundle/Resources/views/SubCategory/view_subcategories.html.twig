@@ -15,7 +15,7 @@
     <tbody>
         {% for subcategory in subcategories %}
         <tr>
-            <td><a href={{ path('view_topics', {'id':subcategory.category},{'subCatId': subcategory.id}) }}>{{ subcategory.subCategoryName }}</a></td>
+            <td><a href="{{ path('view_topics', {'id' : subcategory.category,'subCatId': subcategory.id}) }}">{{ subcategory.subCategoryName }}</a></td> 
             <td>{{ subcategory.description}}</td>
         </tr>
         {% endfor %}
