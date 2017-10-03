@@ -19,4 +19,7 @@ ForumBundle\Entity\Topic:
             type: integer
             length: 255
             inversedBy: subCategory
+        slug:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

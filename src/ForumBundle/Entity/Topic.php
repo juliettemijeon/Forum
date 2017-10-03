@@ -28,7 +28,7 @@ class Topic
     private $description;
 
     /**
-     * @ORM\Colum,(name="slug", type="string")
+     * @ORM\Column,(name="slug", type="string")
      */
     private $slug;
     
