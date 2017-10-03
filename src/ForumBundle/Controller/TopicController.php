@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use EasySlugger\Slugger;
 use ForumBundle\Entity\SubCategory;
 use ForumBundle\Entity\Topic;
 use ForumBundle\Form\TopicType;
@@ -46,6 +47,7 @@ class TopicController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             //on ajoute la subCategory
             $topic->setSubCategory($subCatId);
+            $topic->setSlug(Slugger::uniqueSlugify($form->get('topicName')->getData()));
             $this->getDoctrine()->getManager()->getRepository('ForumBundle:Topic')->addTopic($topic);
             
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
