@@ -3,10 +3,12 @@
 namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EasySlugger\Slugger;
 
 /**
  * Category
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Category
 {
@@ -92,8 +94,18 @@ class Category
     }
 
     /**
+     * @ORM\PrePersist
+     * @param string $categoryName
+     * @return void
+     */
+    public function createSlug($categoryName)
+    {
+        $this->setSlug(Slugger::uniqueSlugify($categoryName));
+    }
+
+    /**
      * set slug
-     *
+     * 
      * @param string $slug
      * @return void
      */

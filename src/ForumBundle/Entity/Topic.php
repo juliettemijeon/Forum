@@ -3,10 +3,12 @@
 namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EasySlugger\Slugger;
 
 /**
  * Topic
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Topic
 {
@@ -99,12 +101,13 @@ class Topic
     /**
      * set slug
      *
-     * @param string $slug
+     * @ORM\PrePersist
+     * @param string $topicName
      * @return void
      */
-    public function setSlug($slug)
+    public function setSlug($topicName)
     {
-        $this->slug = $slug;
+        $this->slug = Slugger::uniqueSlugify($topicName);
     }
 
     /**
