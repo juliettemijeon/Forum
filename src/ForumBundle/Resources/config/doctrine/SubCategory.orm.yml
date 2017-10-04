@@ -23,4 +23,6 @@ ForumBundle\Entity\SubCategory:
             type: integer
             length: 255
             inversedBy: category
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: { 
+        prePersist: [setSlug]
+     }

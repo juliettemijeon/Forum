@@ -22,4 +22,6 @@ ForumBundle\Entity\Topic:
         slug:
             type: string
             length: 255
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: { 
+        prePersist: [setSlug]
+     }

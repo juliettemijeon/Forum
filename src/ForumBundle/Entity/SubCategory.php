@@ -131,8 +131,9 @@ class SubCategory
      * @param string $subCategoryName
      * @return void
      */
-    public function setSlug($subCategoryName)
+    public function setSlug()
     {
+        $subCategoryName = $this->getSubCategoryName();
         $this->slug = Slugger::uniqueSlugify($subCategoryName);
     }
 

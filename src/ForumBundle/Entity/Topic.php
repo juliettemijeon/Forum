@@ -105,8 +105,9 @@ class Topic
      * @param string $topicName
      * @return void
      */
-    public function setSlug($topicName)
+    public function setSlug()
     {
+        $topicName = $this->getTopicName();
         $this->slug = Slugger::uniqueSlugify($topicName);
     }
 
