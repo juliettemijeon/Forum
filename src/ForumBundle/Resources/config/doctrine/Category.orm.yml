@@ -19,4 +19,6 @@ ForumBundle\Entity\Category:
         slug:
             type: string
             length: 255
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: { 
+        prePersist: [createSlug]
+     }

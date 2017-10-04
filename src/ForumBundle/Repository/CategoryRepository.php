@@ -21,7 +21,9 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
      * @return category
      */
     public function addCategory(Category $category){
+        
         $this->_em->persist($category);
+        
         $this->_em->flush();
         return $category;
     }

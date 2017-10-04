@@ -98,9 +98,12 @@ class Category
      * @param string $categoryName
      * @return void
      */
-    public function createSlug($categoryName)
+    public function createSlug()
     {
-        $this->setSlug(Slugger::uniqueSlugify($categoryName));
+        $categoryName = $this->getCategoryName();
+        $slug = Slugger::uniqueSlugify($categoryName);
+        
+        $this->setSlug($slug);
     }
 
     /**
