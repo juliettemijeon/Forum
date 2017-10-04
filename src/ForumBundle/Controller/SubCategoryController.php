@@ -62,15 +62,16 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * @Route("/categories/{id}/subcategories/{subCatId}",name="update_subcategory")
+     * @Route("/categories/{slug}/subcategories/{subCatSlug}",name="update_subcategory")
      *
      * @Method("PUT")
      * 
      * @return void
      */
-    public function updateSubCategoryAction(Request $request,$subCatId)
+    public function updateSubCategoryAction(Request $request,$subCatSlug)
     {
-        $subcategory = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->find($subCatId);
+        //$subcategory = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->find($subCatId);
+        $subcategory = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBySlug($subCatSlug);
         //création du formulaire
         $form = $this->get('form.factory')->create(SubCategoryEditType::class,$subcategory);
         

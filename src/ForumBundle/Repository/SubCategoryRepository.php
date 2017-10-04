@@ -34,16 +34,16 @@ class SubCategoryRepository extends \Doctrine\ORM\EntityRepository
      */
     public function findBySlug(String $slug){
         $query = $this->_em
-        ->getRepository('ForumBundle:Category')
+        ->getRepository('ForumBundle:SubCategory')
         ->createQueryBuilder('S')
         ->setParameter('param', $slug)
         ->select('S')
-        ->where('S.categorySlug=:param')
+        ->where('S.slug=:param')
         ->getQuery();
 
-        $subcategories = $query->getSingleResult();
+        $subcategory = $query->getSingleResult();
         
-        return $subcategories;
+        return $subcategory;
     }
 
     //mthd editCategry à créer

@@ -27,7 +27,7 @@ create_subcategory:
     defaults: { _controller: ForumBundle:SubCategory:createSubCategory }
 
 update_subcategory:
-    path:     /categories/{id}/subcategories/{subCatId}
+    path:     /categories/{slug}/subcategories/{subCatSlug}
     defaults: { _controller: ForumBundle:SubCategory:updateSubCategory }
 
 delete_subcategory:
