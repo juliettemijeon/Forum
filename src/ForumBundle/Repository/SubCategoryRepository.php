@@ -26,5 +26,25 @@ class SubCategoryRepository extends \Doctrine\ORM\EntityRepository
         return $subcategory;
     }
 
+    /**
+     * Récupération d'une subcategory grâce au slug
+     *
+     * @param String $slug
+     * @return $category
+     */
+    public function findBySlug(String $slug){
+        $query = $this->_em
+        ->getRepository('ForumBundle:Category')
+        ->createQueryBuilder('S')
+        ->setParameter('param', $slug)
+        ->select('S')
+        ->where('S.categorySlug=:param')
+        ->getQuery();
+
+        $subcategories = $query->getSingleResult();
+        
+        return $subcategories;
+    }
+
     //mthd editCategry à créer
 }

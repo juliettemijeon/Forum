@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use FormuBundle\Entity\Category;
 use ForumBundle\Entity\SubCategory;
 use ForumBundle\Form\SubCategoryType;
 use ForumBundle\Form\SubCategoryEditType;
@@ -15,15 +16,17 @@ use Symfony\Component\VarDumper\VarDumper;
 class SubCategoryController extends Controller
 {
     /**
-     * @Route("/categories/{id}/subcategories",name="view_subcategories")
+     * @Route("/categories/{slug}/subcategories",name="view_subcategories")
      * 
      * @Method("GET")
      *
      * @return void
      */
-    public function viewSubCategoryAction($id)
+    public function viewSubCategoryAction($slug)
     {
-        $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$id));
+        //recup de la category grâce au slug, puis recup de la subcategory grâce à l'id de la category
+        $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->findBySlug($slug);
+        $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$category->getId()));
 
         return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
             'subcategories'=>$subcategories,

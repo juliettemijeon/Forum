@@ -3,6 +3,7 @@
 namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ForumBundle\Entity\Category;
 use EasySlugger\Slugger;
 
 /**
@@ -22,21 +23,29 @@ class SubCategory
     private $id;
 
     /**
+     * nom de la subcategory
+     * 
      * @ORM\Column(name="subCategoryName",type="string")
      */
     private $subCategoryName;
 
     /**
+     * description de la subcategory
+     * 
      * @ORM\Column(name="description",type="string")
      */
     private $description;
 
     /**
+     * slug de la subcategory
+     * 
      * @ORM\Column(name="slug", type="string")
      */
     private $slug;
 
     /**
+    * id de la catégorie parente 
+    * 
     * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Category",inversedBy="id")
     */
     private $category;
@@ -128,7 +137,6 @@ class SubCategory
      * set slug
      *
      * @ORM\PrePersist
-     * @param string $subCategoryName
      * @return void
      */
     public function setSlug()
@@ -146,5 +154,6 @@ class SubCategory
     {
         return $this->slug;
     }
+
 }
 
