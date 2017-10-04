@@ -27,5 +27,23 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
         return $category;
     }
 
-    //mthd editCategry à créer
+    /**
+     * Récupération d'une catégorie grâce au slug
+     *
+     * @param String $slug
+     * @return $category
+     */
+    public function findBySlug(String $slug){
+        $query = $this->_em
+        ->getRepository('ForumBundle:Category')
+        ->createQueryBuilder('C')
+        ->setParameter('param', $slug)
+        ->select('C')
+        ->where('C.slug=:param')
+        ->getQuery();
+
+        $category = $query->getSingleResult();
+        
+        return $category;
+    }
 }

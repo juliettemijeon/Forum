@@ -58,16 +58,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/categories/{id}",name="update_category")
+     * @Route("/categories/{slug}",name="update_category")
      * 
      * @Method("PUT")
      * 
      * @return void
      */
-    public function updateCategoryAction(Request $request,$id)
+    public function updateCategoryAction(Request $request,$slug)
     {
         //récupération de la catégorie à modifier
-        $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->find($id);
+        //$category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->find($id);
+        //récupération de la catégorie grâce à son slug
+        $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->findBySlug($slug);
 
         $form = $this->get('form.factory')->create(CategoryEditType::class,$category);
         

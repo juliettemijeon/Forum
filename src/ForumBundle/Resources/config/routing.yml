@@ -11,7 +11,7 @@ create_category:
     defaults: { _controller: ForumBundle:Category:createCategory }
 
 update_category:
-    path:     /categories/{id}
+    path:     /categories/{slug}
     defaults: { _controller: ForumBundle:Category:updateCategory }
 
 delete_categories:
