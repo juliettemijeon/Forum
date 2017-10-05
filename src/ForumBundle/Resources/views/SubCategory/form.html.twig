@@ -1,6 +1,16 @@
-{# src/ForumBundle/Resources/views/SubCategory/form.html.twig #}
+{% extends "BaseBundle::layout/layout.html.twig" %}
 
-<h3>Nouvelle sous-catégorie</h3>
-<div class="well">
-  {{ form(form) }}
-</div>
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+        <br/>
+        {% block title %}<h3>Nouvelle sous-catégorie</h3>{% endblock %}
+        
+        {% block body %}
+          <div class="well">
+            {{ form(form) }}
+          </div>
+        {% endblock %}
+    </div>
+  </div>
+{% endblock content %}
