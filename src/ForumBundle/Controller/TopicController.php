@@ -16,15 +16,16 @@ use Symfony\Component\VarDumper\VarDumper;
 class TopicController extends Controller
 {
     /**
-     * @Route("/categories/{id}/subcategories/{subCatId}/topics",name="view_topics")
+     * @Route("/categories/{slug}/subcategories/{subCatSlug}/topics",name="view_topics")
      * 
      * @Method("GET")
      *
      * @return void
      */
-    public function viewTopicsAction($id,$subCatId)
-    {
-        $topics = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Topic')->findBy(array('subCategory'=>$subCatId));
+    public function viewTopicsAction($slug,$subCatSlug)
+    {   echo("subcatslug :". $subCatSlug);
+        $subcategory = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBySlug($subCatSlug);
+        $topics = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Topic')->findBy(array('subCategory'=>$subcategory->getId()));
         return $this->render('ForumBundle:Topic:view_topics.html.twig', array(
             'topics'=>$topics
         ));

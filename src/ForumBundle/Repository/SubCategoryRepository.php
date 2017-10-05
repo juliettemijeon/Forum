@@ -33,6 +33,7 @@ class SubCategoryRepository extends \Doctrine\ORM\EntityRepository
      * @return $category
      */
     public function findBySlug(String $slug){
+        echo("repo - slug : ". $slug);
         $query = $this->_em
         ->getRepository('ForumBundle:SubCategory')
         ->createQueryBuilder('S')

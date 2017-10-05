@@ -35,7 +35,7 @@ delete_subcategory:
     defaults: { _controller: ForumBundle:SubCategory:deleteSubCategory }
 
 view_topics:
-    path:     /categories/{id}/subcategories/{subCatId}/topics
+    path:     /categories/{slug}/subcategories/{subCatSlug}/topics
     defaults: { _controller: ForumBundle:Topic:viewTopics }
 
 create_topic:

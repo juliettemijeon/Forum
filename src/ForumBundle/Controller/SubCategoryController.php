@@ -29,6 +29,7 @@ class SubCategoryController extends Controller
         $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$category->getId()));
 
         return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
+            'category'=>$category,
             'subcategories'=>$subcategories,
         ));
     }
