@@ -15,13 +15,20 @@ ForumBundle\Entity\Topic:
         description:
             type: string
             length: 255
-        subCategory:
-            type: integer
-            length: 255
-            inversedBy: subCategory
         slug:
             type: string
             length: 255
+    manyToOne:
+        subCategory:
+            targetEntity: SubCategory
+            inversedBy: topics
+            joinColumn:
+                name: subcategory_id
+                referencedColumnName: id
+    oneToMany:
+        messages:
+            targetEntity: Message
+            mappedBy: topic
     lifecycleCallbacks: { 
         prePersist: [setSlug]
      }

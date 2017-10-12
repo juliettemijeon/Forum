@@ -19,10 +19,17 @@ ForumBundle\Entity\SubCategory:
         slug:
             type: string
             length: 255
+    manyToOne:
         category:
-            type: integer
-            length: 255
-            inversedBy: category
+            targetEntity: Category
+            inversedBy: subcategories
+            joinColumn: 
+                name: category_id
+                referencedColumnName: id
+    oneToMany:
+        topics:
+            targetEntity: Topic
+            mappedBy: subcategory
     lifecycleCallbacks: { 
         prePersist: [setSlug]
      }

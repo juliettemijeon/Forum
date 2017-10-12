@@ -34,7 +34,7 @@ class Message
     private $date;
 
     /**
-    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Topic",inversedBy="id")
+    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Topic",inversedBy="messages")
     */
     private $topic;
 
@@ -118,6 +118,26 @@ class Message
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * set le topic du message
+     *
+     * @param Topic $topic
+     * @return Message
+     */
+    public function setTopic($topic){
+        $this->topic=$topic;
+        return $this;
+    }
+
+    /**
+     * récupération du topic auquel appartient le message
+     *
+     * @return Topic
+     */
+    public function getTopic(){
+        return $this->topic;
     }
 }
 

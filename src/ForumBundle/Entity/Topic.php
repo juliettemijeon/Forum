@@ -35,9 +35,27 @@ class Topic
     private $slug;
     
     /**
-    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\SubCategory",inversedBy="id")
-    */
+     * @var SubCategory
+     * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\SubCategory",inversedBy="topics")
+     * @ORM\JoinColumn(name="subCategory_id",referencedColumnName="id")
+     */
     private $subCategory;
+
+    /**
+     * les messages rattachés au topic
+     *
+     * @var Message[]
+     * 
+     * @ORM\OneToMany(targetEntity="ForumBundle\Entity\Message",mappedBy="topic")
+     */
+    private $messages;
+
+    /**
+     * Constructeur permettant de forcer l'utilisation d'une ArrayCollection pour le champ messages
+     */
+    public function __construct(){
+        $this->messages=new ArrayCollection();
+    }
 
 
     /**
@@ -143,6 +161,24 @@ class Topic
     public function getSubCategory()
     {
         return $this->subCategory;
+    }
+
+    /**
+     * @param Message[] $messages
+     * @return Topic
+     */
+    public function setMessages($messages){
+        $this->messages=$messages;
+        return $this;
+    }
+
+    /**
+     * récupération des messages liés au topic
+     *
+     * @return void
+     */
+    public function getMessages(){
+        return $this->messages;
     }
 }
 

@@ -44,11 +44,26 @@ class SubCategory
     private $slug;
 
     /**
-    * id de la catégorie parente 
+    * @var Category 
     * 
-    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Category",inversedBy="id")
+    * @ORM\ManyToOne(targetEntity="ForumBundle\Entity\Category",inversedBy="subcategories")
+    * @ORM\JoinColumn(name="category_id",referencedColumnName="id")
     */
     private $category;
+
+    /**
+     * @var Topic[]
+     * 
+     * @ORM\OneToMany(targetEntity="ForumBundle\Entity\Topic", mappedBy="subCategory")
+     */
+    private $topics;
+
+    /**
+     * Constructeur permettant de forcer l'utilisation d'une ArrayCollection pour le champ topics
+     */
+    public function __construct(){
+        $this->topics=new ArrayCollection();
+    }
 
 
     /**
@@ -153,6 +168,25 @@ class SubCategory
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * set topics
+     *
+     * @param Topic[] $topics
+     * @return void
+     */
+    public function setTopics($topics){
+        $this->topics=$topics;
+    }
+
+    /**
+     * get topics
+     *
+     * @return Topic[]
+     */
+    public function getTopics(){
+        return $this->topics;
     }
 
 }

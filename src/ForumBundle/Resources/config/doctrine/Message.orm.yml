@@ -15,4 +15,11 @@ ForumBundle\Entity\Message:
             type: object
         date:
             type: datetime
+    manyToOne:
+        topic:
+            targetEntity: Topic
+            inversedBy: messages
+            joinColumn: 
+                name: topic_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

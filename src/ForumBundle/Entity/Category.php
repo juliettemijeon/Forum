@@ -34,6 +34,20 @@ class Category
      */
     private $slug;
 
+    /**
+     * @var Subcategory[]
+     * 
+     * @ORM\OneToMany(targetEntity="SubCategory",mappedBy="category")
+     */
+    private $subcategories;
+
+    /**
+     * Constructeur permettant de forcer l'utilisation d'une ArrayCollection pour le champ subcategories
+     */
+    public function __construct(){
+        $this->subcategories=new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -125,6 +139,24 @@ class Category
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Récupération des sous-catégories enfants de la catégorie
+     *
+     * @return Subcategory[]
+     */
+    public function getSubcategories(){
+        return $this->subcategories;
+    }
+
+    /**
+     * @param Subcategory[]
+     *
+     * @return void
+     */
+    public function setSubcategories($subcategories){
+        $this->subcategories=$subcategories;
     }
 }
 

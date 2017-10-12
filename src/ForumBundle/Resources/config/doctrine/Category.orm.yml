@@ -19,6 +19,10 @@ ForumBundle\Entity\Category:
         slug:
             type: string
             length: 255
+    oneToMany:
+        subcategories:
+            targetEntity: SubCategory
+            mappedBy: category
     lifecycleCallbacks: { 
         prePersist: [createSlug]
      }
