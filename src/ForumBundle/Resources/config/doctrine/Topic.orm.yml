@@ -23,7 +23,7 @@ ForumBundle\Entity\Topic:
             targetEntity: SubCategory
             inversedBy: topics
             joinColumn:
-                name: subcategory_id
+                name: subCategory_id
                 referencedColumnName: id
     oneToMany:
         messages:

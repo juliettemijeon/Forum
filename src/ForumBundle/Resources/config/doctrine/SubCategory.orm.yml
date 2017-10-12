@@ -29,7 +29,7 @@ ForumBundle\Entity\SubCategory:
     oneToMany:
         topics:
             targetEntity: Topic
-            mappedBy: subcategory
+            mappedBy: subCategory
     lifecycleCallbacks: { 
         prePersist: [setSlug]
      }
