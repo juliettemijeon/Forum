@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
         //recup de la category grâce au slug, puis recup de la subcategory grâce à l'id de la category
         $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->findBySlug($slug);
         $subcategories = $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->findBy(array('category'=>$category->getId()));
-
+        
         return $this->render('ForumBundle:SubCategory:view_subcategories.html.twig', array(
             'category'=>$category,
             'subcategories'=>$subcategories,
@@ -35,13 +35,13 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * @Route("/categories/{id}/subcategories/create",name="create_subcategory")
+     * @Route("/categories/{slug}/subcategories/create",name="create_subcategory")
      * 
      * @Method("POST")
      *
      * @return void
      */
-    public function createSubCategoryAction(Request $request,$id)
+    public function createSubCategoryAction(Request $request,$slug)
     {   
         $subcategory = new SubCategory();
         //création du formulaire
@@ -49,12 +49,14 @@ class SubCategoryController extends Controller
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             //on ajoute la category
-            $subcategory->setCategory($id);
-            $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->addSubCategory($subcategory);
+            $category = $this->getDoctrine()->getManager()->getRepository('ForumBundle:Category')->findBySlug($slug);
             
+            $subcategory->setCategory($category);
+            
+            $this->getDoctrine()->getManager()->getRepository('ForumBundle:SubCategory')->addSubCategory($subcategory);
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-            return $this->redirectToRoute('view_subcategories', array('id' => $subcategory->getCategory()));
+            return $this->redirectToRoute('view_subcategories', array('slug' => $slug));
         }
 
         return $this->render('ForumBundle:SubCategory:form.html.twig', array(
