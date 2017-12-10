@@ -23,7 +23,7 @@ view_subcategories:
     defaults: { _controller: ForumBundle:SubCategory:viewSubCategory }
 
 create_subcategory:
-    path:     /categories/{id}/subcategories/create
+    path:     /categories/{slug}/subcategories/create
     defaults: { _controller: ForumBundle:SubCategory:createSubCategory }
 
 update_subcategory:
