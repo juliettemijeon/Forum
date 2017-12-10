@@ -75,11 +75,11 @@ class Message
     /**
      * Set author
      *
-     * @param \stdClass $author
+     * @param User $author
      *
      * @return Message
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
 
@@ -126,7 +126,7 @@ class Message
      * @param Topic $topic
      * @return Message
      */
-    public function setTopic($topic){
+    public function setTopic(Topic $topic){
         $this->topic=$topic;
         return $this;
     }

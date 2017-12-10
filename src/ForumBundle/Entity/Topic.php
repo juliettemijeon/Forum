@@ -3,6 +3,7 @@
 namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use EasySlugger\Slugger;
 
 /**
@@ -142,11 +143,11 @@ class Topic
     /**
      * Set subcategory
      *
-     * @param string $subCategory
+     * @param SubCategory $subCategory
      *
      * @return Topic
      */
-    public function setSubCategory($subCategory)
+    public function setSubCategory(SubCategory $subCategory)
     {
         $this->subCategory = $subCategory;
 

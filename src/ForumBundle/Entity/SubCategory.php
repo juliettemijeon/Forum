@@ -4,6 +4,7 @@ namespace ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ForumBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 use EasySlugger\Slugger;
 
 /**
@@ -127,11 +128,11 @@ class SubCategory
     /**
      * Set category
      *
-     * @param int $category
+     * @param Category $category
      *
      * @return SubCategory
      */
-    public function setCategory($category)
+    public function setCategory(Category $category)
     {
         $this->category = $category;
 
